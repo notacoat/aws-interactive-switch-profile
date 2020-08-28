@@ -1,0 +1,21 @@
+{
+    "name": "aws-interactive-switch-profile",
+    "version": "1.0.0",
+    "description": "Switch between AWS profiles",
+    "author": "Emily Barbour",
+    "license": "MIT",
+    "engines": {
+        "node": ">=8.17.0"
+    },
+    "bin": {
+        "aws-interactive-switch-profile": "index.js"
+    },
+    "dependencies": {
+        "prompts": "^2.3.0",
+        "shelljs": "^0.8.4"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
+    },
+    "repository": "git://github.com/notacoat/aws-interactive-switch-profile.git"
+}
