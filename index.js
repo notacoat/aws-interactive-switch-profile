@@ -3,7 +3,6 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const prompts = require('prompts');
-const shell = require('shelljs');
 
 async function getProfiles() {
   const { stdout: profiles } = await exec('aws configure list-profiles');
@@ -33,7 +32,7 @@ async function writeProfile(profile) {
     return;
   }
 
-  shell.sed('-i', /export AWS_PROFILE=".*"/, 'export AWS_PROFILE="' + profile + '"', '~/.zshrc')
+  exec(`sed -i"b" 's/export AWS_PROFILE=".*"/export AWS_PROFILE="${profile}"/' ~/.zshrc`)
 }
 
 function onError(e) {
