@@ -6,23 +6,31 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 
-async function requirementsCheck() {
-  try {
-    const fileName = process.argv[2];
-    if (!fs.existsSync(fileName)) {
-      console.error('The tmp file does not exist.');
-    }
-  } catch (err) {
-    console.error(err);
+function onError(e) {
+  if (e.stderr) {
+    process.stderr.write(e.stderr)
+  } else {
+    console.error(e)
   }
+  process.exit(1);
+}
 
+async function checkAWS() {
   await exec('aws --version', (error, _, stderr) => {
-    if (error) {
+    if(error) {
       console.error('Please install AWS CLI.');
+      process.exit(1);
     } else if (stderr) {
-      console.error('stderr');
+      throw(stderr);
     }
   });
+}
+
+async function checkFile() {
+  const fileName = process.argv[2];
+  if (!fs.existsSync(fileName)) {
+    throw('The tmp file does not exist.');
+  }
 }
 
 async function getProfiles() {
@@ -36,16 +44,17 @@ async function getProfiles() {
 }
 
 async function writeFile(profile) {
-  tmpFile = process.argv[2];
   try {
+    tmpFile = process.argv[2];
     fs.writeFileSync(tmpFile, profile);
-  } catch(e) {
-    console.error(e);
+  } catch (error) {
+    throw (error);
   }
 }
 
 async function run() {
-  await requirementsCheck();
+  checkFile().catch(onError);
+  checkAWS().catch(onError);
   const choices = await getProfiles();
   const { profile } = await prompts({
     type: 'select',
@@ -54,16 +63,7 @@ async function run() {
     choices,
   });
 
-  await writeFile(profile);
-}
-
-function onError(e) {
-  if (e.stderr) {
-    process.stderr.write(e.stderr)
-  } else {
-    console.error(e)
-  }
-  process.exit(1);
+  await writeFile(profile).catch(onError);
 }
 
 run().catch(onError);
