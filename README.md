@@ -9,7 +9,7 @@ Utilizes `aws configure list-profiles` via aws-cli to allow the switching of pro
 
 ### Usage
 
-`aws-interactive-switch-profile '/tmp/foo.txt'`
+`aws-switch-profiles '/tmp/foo.txt'`
 
 Because you cannot persist global environment variables outside of Node, you must use some sort of helper function to facilitate this.
 
@@ -19,8 +19,8 @@ aisp() {
     unset _PROFILE;
     # creates tmp file
     tf=$(mktemp /tmp/aisp.XXXXXXXXX)
-    # runs aws-interactive-switch-profile and stores user selection to tmp file
-    node aws-interactive-switch-profile $tf
+    # runs aws-switch-profiles and stores user selection to tmp file
+    node aws-switch-profiles $tf
     # reads in tmp file and stores to variable
     _PROFILE=$(<$tf);
     if [ -z $_PROFILE ];
