@@ -28,8 +28,11 @@ async function checkAWS() {
 
 async function checkFile() {
   const fileName = process.argv[2];
+  if (!fileName) {
+    throw('Please specify a temp file argument');
+  }
   if (!fs.existsSync(fileName)) {
-    throw('The tmp file does not exist.');
+    throw('The temp file does not exist.');
   }
 }
 

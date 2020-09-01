@@ -1,0 +1,19 @@
+##################################
+#  Sample script for zsh shell. #
+##################################
+
+aisp() {
+    unset _PROFILE;
+    tf=$(mktemp /tmp/aisp.XXXXXXXXX)
+    aws-switch-profiles $tf
+
+    _PROFILE=$(<$tf);
+    if [ -z $_PROFILE ];
+      then
+        echo "Profile not selected.";
+      else
+        export AWS_PROFILE=$_PROFILE;
+    fi
+
+    rm $tf;
+}
