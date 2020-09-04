@@ -1,6 +1,6 @@
 {
     "name": "aws-interactive-switch-profile",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "description": "Switch between AWS profiles",
     "author": "Emily Barbour",
     "license": "MIT",
@@ -13,5 +13,18 @@
     "dependencies": {
         "prompts": "^2.3.0"
     },
-    "repository": "git://github.com/notacoat/aws-interactive-switch-profile.git"
+    "repository": "git://github.com/notacoat/aws-interactive-switch-profile.git",
+    "keywords": [
+        "amazon web services",
+        "AWS_PROFILE",
+        "aws",
+        "aws-cli",
+        "cli",
+        "command line",
+        "credentials",
+        "nodejs",
+        "node",
+        "terminal",
+        "utility"
+    ]
 }

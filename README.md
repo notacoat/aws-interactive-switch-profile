@@ -2,6 +2,8 @@
 
 Utilizes `aws configure list-profiles` via [aws-cli](https://aws.amazon.com/cli/) to allow the switching of profiles using [Prompts](https://github.com/terkelg/prompts).  No more remembering what your AWS profiles are called and typing export statements in terminal.  Run the program via a helper shell function, select the profile you want to use and that's it.
 
+![aws-interactive-switch-profile demo](demo/demo.gif)
+
 ### Install
 
 > $ npm install -g aws-interactive-switch-profile
@@ -10,9 +12,9 @@ Utilizes `aws configure list-profiles` via [aws-cli](https://aws.amazon.com/cli/
 
 `aws-switch-profiles '/tmp/foo.txt'`
 
-Because you cannot persist global environment variables outside of Node and Prompts uses stdout, you must pass a writable temp file and also use some sort of helper function to facilitate the process.
+Because you cannot persist global environment variables outside of Node and Prompts uses stdout, you must pass a writable temp file and also use some sort of helper function to facilitate the process.  See `sample-scripts` folder for fish and zsh functions.
 
-> example zsh script
+> example zsh function
 ```
 aisp() {
   unset _PROFILE;
