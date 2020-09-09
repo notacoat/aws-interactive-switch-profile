@@ -1,8 +1,9 @@
 ## aws-interactive-switch-profile
 
-Utilizes `aws configure list-profiles` via [aws-cli](https://aws.amazon.com/cli/) to allow the switching of profiles using [Prompts](https://github.com/terkelg/prompts).  No more remembering what your AWS profiles are called and typing export statements in terminal.  Run the program via a helper shell function, select the profile you want to use and that's it.
+Do you use multiple named AWS profiles and switch between them on a regular basis? Instead of
+remembering what your profiles are called and the proper aws commands to type, this tool allows quick switching between profiles via an interactive menu that queries your profiles using the [AWS-CLI](https://aws.amazon.com/cli/). Run the program via a helper shell function, select the profile you want to use and that's it.
 
-![aws-interactive-switch-profile demo](demo/demo.gif)
+![aws-interactive-switch-profile demo](https://raw.githubusercontent.com/notacoat/project-media/master/aws-interactive-switch-profile.gif)
 
 ### Install
 

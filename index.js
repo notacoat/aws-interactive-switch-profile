@@ -17,11 +17,11 @@ function onError(e) {
 
 async function checkAWS() {
   await exec('aws --version', (error, _, stderr) => {
-    if(error) {
+    if (error) {
       console.error('Please install AWS CLI.');
       process.exit(1);
     } else if (stderr) {
-      throw(stderr);
+      throw (stderr);
     }
   });
 }
@@ -29,10 +29,10 @@ async function checkAWS() {
 async function checkFile() {
   const fileName = process.argv[2];
   if (!fileName) {
-    throw('Please specify a temp file argument');
+    throw ('Please specify a temp file argument');
   }
   if (!fs.existsSync(fileName)) {
-    throw('The temp file does not exist.');
+    throw ('The temp file does not exist.');
   }
 }
 
